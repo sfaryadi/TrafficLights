@@ -7,14 +7,17 @@ import java.util.Scanner;
 
 public class CarGeneration  {
 
+	
+	
+	static LinkedList<Car> northQueue = new LinkedList<>();		
+	static LinkedList<Car> southQueue = new LinkedList<>();		
+	static LinkedList<Car> eastQueue = new LinkedList<>();		
+	static LinkedList<Car> westQueue = new LinkedList<>();	
+
+	
+	
 	public static void main(String[] args) throws Exception {
 		
-		
-		
-		LinkedList<Car> northQueue = new LinkedList<>();		
-		LinkedList<Car> southQueue = new LinkedList<>();		
-		LinkedList<Car> eastQueue = new LinkedList<>();		
-		LinkedList<Car> westQueue = new LinkedList<>();		
 
 		File file = new File("Samplecar");
 		Scanner scan = new Scanner(file);
@@ -27,8 +30,10 @@ public class CarGeneration  {
 			}
 			if(newCar.dir == 'S') {
 				southQueue.add(newCar);
+
 			}if(newCar.dir == 'E') {
 				eastQueue.add(newCar);
+
 			}if(newCar.dir == 'W') {
 				westQueue.add(newCar);
 			}
