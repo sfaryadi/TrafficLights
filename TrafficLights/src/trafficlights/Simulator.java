@@ -11,7 +11,10 @@ public class Simulator {
 		int startTime;
 		int endTime;
 		int changeFrequency;
-
+		boolean nlGreen;
+		boolean elGreen;
+		int currentTime;
+		int lightChange;
 		
 		Scanner input = new Scanner(System.in);	
 		System.out.println("Please enter the starting time of the simulation");
@@ -23,32 +26,77 @@ public class Simulator {
 
 		PriorityQueue<Event> eventQ = new PriorityQueue<>();
 		Event current = new Event("NG", startTime);
+		lightChange = startTime + changeFrequency;
 		eventQ.add(current);
-		Event carArrival = new Event("A", current.getTime());
+		
 				
+		while(!eventQ.isEmpty()) {
+			Car currentCar;
+			currentTime = current.getTime();
+			Event test = eventQ.remove();
+			switch (test.getEventType()) {
+				case "NG":
 				
-		while (!eventQ.isEmpty()) { 
-			
-			switch (current.getEventType()) {
-			case "A":
+					
+					
+					elGreen = true;
+					nlGreen = false;
+					int crossTime = CarGeneration.northQueue.peek().cTime;
+					
+					if(lightChange > currentTime + crossTime)
+					while (nlGreen == true) {
+						currentCar = CarGeneration.northQueue.remove();
+						Event crossing = new Event("C", currentTime + currentCar.cTime );
+						currentTime += currentCar.cTime;
+						eventQ.add(crossing);
+		
+					}
+					break;
+					
+				case "EG":
+					elGreen = true;
+					nlGreen = false;
+					while (elGreen == true) {
+						currentCar = CarGeneration.eastQueue.remove();
+						Event crossing = new Event("C", currentTime + currentCar.cTime );
+						currentTime += currentCar.cTime;
+						eventQ.add(crossing);
+		
+					}
+					
+					
+					break; 
+					
+				case "C":
+					break;
+				case "A":
 				
-			
-			
-			
+					
+					break;
+		
 			}
-				  
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
 			
 
 			
 			
 			
 			
-		} //while
+	} 
 
 		
 		
-	}
-
 }
+
+
