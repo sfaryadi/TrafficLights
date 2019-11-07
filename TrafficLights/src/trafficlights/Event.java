@@ -1,8 +1,7 @@
 package trafficlights;
 
 public class Event implements Comparable<Event>{
-	private String eventType; // "A" = arrival, 'C' = cross intersection 'NG' = green north/sout "EG" = green east/west 
-							// "NR" = red north/south "ER"  = red east/west 
+	private String eventType;
 	private int time;
 
 	public Event(String eType, int time) {
